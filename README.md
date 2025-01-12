@@ -31,3 +31,33 @@ npm run start
 ```sh
 npm run lint
 ```
+
+### Next.js 15 対応
+
+#### router.push("URL") でエラーが出る
+
+```javascript
+import { useRouter } from "next/router";
+
+router = userRouter();
+router.push("/hoge")
+```
+- appディレクトリ内では `import { useRouter } from "next/navigation";`を使うべし
+
+```javascript
+import { useRouter } from "next/navigation";
+router = userRouter();
+router.push("/hoge")
+```
+
+#### 動的APIに同期的にアクセスすると警告が表示される
+
+- [動的 API](https://nextjs.org/docs/app/building-your-application/rendering/server-components#dynamic-apis) は、リクエスト時にのみ知ることができる情報に依存する
+- searchParams がそれ
+- [React.use() でラップしてやる](https://nextjs.org/docs/messages/sync-dynamic-apis)必要がある
+
+```javascript
+import * as React from 'react'
+
+const { id } = React.use(params)
+```
