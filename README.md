@@ -14,6 +14,8 @@ npx create-next-app
 nvm install 22.13.0
 nvm use 22.13.0
 
+nvm alias default v22.13.0
+
 npm run dev
 ```
 http://localhost:3000
